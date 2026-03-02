@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { MetricCard } from './components/MetricCard'
 import { ClaimsTable } from './components/ClaimsTable'
 import { DenialAnalyzer } from './components/DenialAnalyzer'
-import { StatusBadge } from './components/StatusBadge'
+
 import { Toast } from './components/Toast'
 import { MOCK_CLAIMS, METRICS, type Claim, type ClaimStatus } from './data/claims'
 
