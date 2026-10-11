@@ -1,4 +1,4 @@
-# ClaimPulse — Revenue Operations Dashboard
+# ClaimPulse Revenue Operations Dashboard
 
 A demo dashboard built to showcase AI-powered denial recovery for post-acute home health care agencies.
 
