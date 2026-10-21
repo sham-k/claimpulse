@@ -22,7 +22,7 @@ export function MetricCard({ label, value, sub, trend, trendValue, accent = 'def
   const trendArrow = trend === 'up' ? '↑' : trend === 'down' ? '↓' : '—'
 
   return (
-    <div className="bg-[#111] border border-[#2a2a2a] rounded-md p-4 flex flex-col gap-3 hover:border-[#3a3a3a] transition-colors duration-150">
+    <div className="bg-[#cbf3ed] border border-[#2a2a2a] rounded-md p-4 flex flex-col gap-3 hover:border-[#3a3a3a] transition-colors duration-150">
       <div className="flex items-center justify-between">
         <span className="text-[11px] uppercase tracking-widest text-[#555] font-medium">{label}</span>
         {icon && <span className="text-[#444]">{icon}</span>}

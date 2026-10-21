@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { MetricCard } from './components/MetricCard'
 import { ClaimsTable } from './components/ClaimsTable'
 import { DenialAnalyzer } from './components/DenialAnalyzer'
+import { StatusLegend } from './components/StatusLegend'
 
 import { Toast } from './components/Toast'
 import { MOCK_CLAIMS, METRICS, type Claim, type ClaimStatus } from './data/claims'
@@ -81,7 +82,7 @@ const handleResubmit = (claimId: string) => {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
+    <div className="min-h-screen  flex flex-col">
       {/* Top nav */}
       <nav className="border-b border-[#1e1e1e] px-6 h-12 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
@@ -89,13 +90,13 @@ const handleResubmit = (claimId: string) => {
             <div className="w-5 h-5 rounded bg-[#f0f0f0] flex items-center justify-center">
               <div className="w-2.5 h-2.5 rounded-sm bg-[#0a0a0a]" />
             </div>
-            <span className="text-[13px] font-semibold text-[#f0f0f0] tracking-tight">ClaimPulse</span>
+            <span className="text-[13px] font-semibold text-[#1a1a1a] tracking-tight">ClaimPulse</span>
           </div>
           <span className="text-[#2a2a2a]">/</span>
           <span className="text-[13px] text-[#555]">Revenue Operations</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-[11px] text-[#444] font-mono">NOV 2024</span>
+          <span className="text-[11px] text-[#555] font-mono">NOV 2024</span>
           <div className="flex items-center gap-2 bg-[#111] border border-[#2a2a2a] rounded px-2.5 py-1">
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot" />
             <span className="text-[11px] text-[#888]">Live</span>
@@ -107,7 +108,7 @@ const handleResubmit = (claimId: string) => {
         {/* Header */}
         <div className="flex items-end justify-between">
           <div>
-            <h1 className="text-[20px] font-semibold text-[#f0f0f0] tracking-tight">Revenue Dashboard</h1>
+            <h1 className="text-[20px] font-semibold text-[#1a1a1a] tracking-tight">Revenue Dashboard</h1>
             <p className="text-[12px] text-[#555] mt-0.5">
               {MOCK_CLAIMS.length} claims · Click a denied claim to run AI recovery analysis
             </p>
@@ -174,7 +175,7 @@ const handleResubmit = (claimId: string) => {
                 >
                   {f.label}
                   {statusCounts[f.value] !== undefined && (
-                    <span className={`ml-1.5 font-mono ${filterStatus === f.value ? 'text-[#0a0a0a]/60' : 'text-[#444]'}`}>
+                    <span className={`ml-1.5 font-mono ${filterStatus === f.value ? 'text-[#0a0a0a]/60' : 'text-[#555]'}`}>
                       {statusCounts[f.value]}
                     </span>
                   )}
@@ -185,7 +186,7 @@ const handleResubmit = (claimId: string) => {
             {/* Search */}
             <div className="relative">
               <svg
-                className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[#444]"
+                className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[#555]"
                 width="12"
                 height="12"
                 viewBox="0 0 16 16"
@@ -212,12 +213,12 @@ const handleResubmit = (claimId: string) => {
           />
 
           {filteredClaims.length === 0 && (
-            <div className="text-center py-12 text-[#444] text-[12px]">No claims match this filter</div>
+            <div className="text-center py-12 text-[#555] text-[12px]">No claims match this filter</div>
           )}
         </div>
 
         {/* Hint for denied claims */}
-        <div className="flex items-center gap-2 text-[11px] text-[#444]">
+        <div className="flex items-center gap-2 text-[11px] text-[#555]">
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
             <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.2" />
             <path d="M8 7v4M8 5.5v.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
@@ -225,6 +226,8 @@ const handleResubmit = (claimId: string) => {
           Click any denied claim to open the AI Denial Analyzer and generate a recovery action plan.
         </div>
       </div>
+
+      <StatusLegend />
 
       {/* Denial analyzer panel */}
     {selectedClaim && (
