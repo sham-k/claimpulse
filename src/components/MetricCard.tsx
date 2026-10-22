@@ -15,7 +15,7 @@ export function MetricCard({ label, value, sub, trend, trendValue, accent = 'def
     green: 'text-green-400',
     red: 'text-red-400',
     amber: 'text-amber-400',
-    default: 'text-[#f0f0f0]',
+    default: 'text-[#1f1919]',
   }[accent]
 
   const trendColor = trend === 'up' ? 'text-green-400' : trend === 'down' ? 'text-red-400' : 'text-[#888]'

@@ -14,7 +14,7 @@ export function StatusLegend() {
     <div className="fixed bottom-5 left-5 z-40 w-60 bg-white border border-[#151414] rounded-md overflow-hidden">
       {/* Header */}
       <div className="px-4 py-2.5 bg-[#444] border-b border-[#2a2a2a]">
-        <span className="text-[10px] uppercase tracking-widest text-[#999] font-medium">Status Legend</span>
+        <span className="text-[10px] uppercase tracking-widest text-[#fff] font-medium">Status Legend</span>
       </div>
 
       {/* Rows */}

@@ -13,7 +13,7 @@ export function ClaimsTable({ claims, onSelectClaim, selectedId }: ClaimsTablePr
       {/* Table header */}
       <div className="grid grid-cols-[2fr_1.2fr_1fr_1fr_1fr_1fr] gap-4 px-4 py-2.5 bg-[#444] border-b border-[#2a2a2a]">
         {['Patient', 'Agency', 'Payer', 'Service', 'Billed', 'Status'].map((col) => (
-          <span key={col} className="text-[10px] uppercase tracking-widest text-[#999] font-medium">
+          <span key={col} className="text-[10px] uppercase tracking-widest text-[#fff] font-medium">
             {col}
           </span>
         ))}

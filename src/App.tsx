@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { MetricCard } from './components/MetricCard'
 import { ClaimsTable } from './components/ClaimsTable'
 import { DenialAnalyzer } from './components/DenialAnalyzer'
+import { ClaimDetails } from './components/ClaimDetails'
 import { StatusLegend } from './components/StatusLegend'
 
 import { Toast } from './components/Toast'
@@ -67,10 +68,19 @@ const handleResubmit = (claimId: string) => {
   }, [claims])
 
   const handleSelectClaim = (claim: Claim) => {
-    if (claim.status === 'denied' || claim.status === 'resubmitted') {
-      setSelectedClaim(claim)
-    }
+    setSelectedClaim(claim)
   }
+
+  const handleClaimAction = (claim: Claim) => {
+    if (claim.status === 'approved') {
+      addToast(`${claim.patientName} marked as paid`, `${claim.id} · $${claim.billedAmount.toLocaleString()}`)
+    } else {
+      addToast(`Status request sent to ${claim.payer}`, `${claim.id} · You'll be notified of any update`, 'info')
+    }
+    setSelectedClaim(null)
+  }
+
+  const isDenialClaim = selectedClaim?.status === 'denied' || selectedClaim?.status === 'resubmitted'
 
   const filters: { label: string; value: FilterStatus }[] = [
     { label: 'All', value: 'all' },
@@ -200,7 +210,7 @@ const handleResubmit = (claimId: string) => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search patient, ID, payer..."
-                className="bg-[#111] border border-[#2a2a2a] rounded pl-7 pr-3 py-1.5 text-[12px] text-[#f0f0f0] placeholder-[#444] focus:outline-none focus:border-[#3a3a3a] w-56 transition-colors"
+                className="bg-[#f9f4f4] border border-[#2a2a2a] rounded pl-7 pr-3 py-1.5 text-[12px] text-[#f0f0f0] placeholder-[#444] focus:outline-none focus:border-[#3a3a3a] w-56 transition-colors"
               />
             </div>
           </div>
@@ -230,12 +240,21 @@ const handleResubmit = (claimId: string) => {
       <StatusLegend />
 
       {/* Denial analyzer panel */}
-    {selectedClaim && (
+    {selectedClaim && isDenialClaim && (
   <DenialAnalyzer
     claim={selectedClaim}
     onClose={() => setSelectedClaim(null)}
     onResubmit={handleResubmit}
   />
+      )}
+
+      {/* Claim details panel */}
+      {selectedClaim && !isDenialClaim && (
+        <ClaimDetails
+          claim={selectedClaim}
+          onClose={() => setSelectedClaim(null)}
+          onAction={handleClaimAction}
+        />
       )}
 
 

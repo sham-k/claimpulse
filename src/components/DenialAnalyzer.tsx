@@ -36,15 +36,15 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" onClick={onClose} />
 
       {/* Panel */}
-      <div className="relative h-full w-[520px] bg-[#111] border-l border-[#2a2a2a] flex flex-col overflow-hidden fade-in">
+      <div className="relative h-full w-[520px] bg-[#fff] border-l border-[#2a2a2a] flex flex-col overflow-hidden fade-in">
         {/* Header */}
         <div className="flex items-start justify-between p-5 border-b border-[#2a2a2a]">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-              <span className="text-[11px] uppercase tracking-widest text-[#555]">Denial Recovery</span>
+              <span className="text-[11px] uppercase tracking-widest text-[#333]">Denial Recovery</span>
             </div>
-            <h2 className="text-[15px] font-semibold text-[#f0f0f0]">{claim.patientName}</h2>
+            <h2 className="text-[15px] font-semibold text-[#444]">{claim.patientName}</h2>
             <p className="text-[11px] text-[#555] font-mono mt-0.5">{claim.id} · {claim.payer}</p>
           </div>
           <button
@@ -61,14 +61,14 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
         <div className="p-5 border-b border-[#1e1e1e]">
           <p className="text-[11px] uppercase tracking-widest text-[#555] mb-2">Denial Reason</p>
           <div className="bg-red-500/5 border border-red-500/15 rounded p-3">
-            <p className="text-[12px] text-red-300/90 leading-relaxed">{claim.denialReason}</p>
+            <p className="text-[12px] text-white-300/90 leading-relaxed">{claim.denialReason}</p>
             {claim.denialCode && (
-              <p className="text-[11px] font-mono text-red-400/60 mt-2">Code: {claim.denialCode}</p>
+              <p className="text-[14px] font-mono text-red-800/60 mt-3">Code: {claim.denialCode}</p>
             )}
           </div>
           <div className="flex items-center justify-between mt-3">
             <span className="text-[11px] text-[#555]">At-risk revenue</span>
-            <span className="text-[13px] font-semibold text-red-400">${claim.billedAmount.toLocaleString()}</span>
+            <span className="text-[13px] font-semibold text-red-600">${claim.billedAmount.toLocaleString()}</span>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
         <div className="flex-1 overflow-y-auto p-5">
           {!keySubmitted ? (
             <div className="space-y-3">
-              <p className="text-[12px] text-[#888] leading-relaxed">
+              <p className="text-[13px] text-[#444] leading-relaxed">
                 Enter your Anthropic API key to run AI-powered denial analysis on this claim.
               </p>
               <input
@@ -85,7 +85,7 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
                 onChange={(e) => setApiKey(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleKeySubmit()}
                 placeholder="sk-ant-..."
-                className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded px-3 py-2 text-[12px] font-mono text-[#f0f0f0] placeholder-[#444] focus:outline-none focus:border-[#3a3a3a] transition-colors"
+                className="w-full bg-[#e3e0e0] border border-[#2a2a2a] rounded px-3 py-2 text-[12px] font-mono text-[#444] placeholder-[#444] focus:outline-none focus:border-[#3a3a3a] transition-colors"
               />
               <button
                 onClick={handleKeySubmit}
@@ -144,7 +144,7 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
               {/* Root cause */}
               <div>
                 <p className="text-[11px] uppercase tracking-widest text-[#555] mb-2">Root Cause</p>
-                <p className="text-[12px] text-[#c0c0c0] leading-relaxed">{analysis.rootCause}</p>
+                <p className="text-[13px] text-[#333] leading-relaxed">{analysis.rootCause}</p>
               </div>
 
               {/* Immediate actions */}
@@ -152,7 +152,7 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
                 <p className="text-[11px] uppercase tracking-widest text-[#555] mb-2">Immediate Actions</p>
                 <ul className="space-y-1.5">
                   {analysis.immediateActions.map((action, i) => (
-                    <li key={i} className="flex gap-2.5 text-[12px] text-[#c0c0c0]">
+                    <li key={i} className="flex gap-2.5 text-[13px] text-[#333]">
                       <span className="font-mono text-[#444] mt-0.5 shrink-0">{i + 1}.</span>
                       <span className="leading-relaxed">{action}</span>
                     </li>
@@ -165,7 +165,7 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
                 <p className="text-[11px] uppercase tracking-widest text-[#555] mb-2">Documentation Required</p>
                 <ul className="space-y-1.5">
                   {analysis.documentationNeeded.map((doc, i) => (
-                    <li key={i} className="flex gap-2 text-[12px] text-[#c0c0c0] items-start">
+                    <li key={i} className="flex gap-2 text-[13px] text-[#444] items-start">
                       <span className="text-amber-400/60 mt-0.5 shrink-0">◆</span>
                       <span className="leading-relaxed">{doc}</span>
                     </li>
@@ -176,8 +176,8 @@ export function DenialAnalyzer({ claim, onClose, onResubmit }: DenialAnalyzerPro
               {/* Resubmission strategy */}
               <div>
                 <p className="text-[11px] uppercase tracking-widest text-[#555] mb-2">Resubmission Strategy</p>
-                <div className="bg-[#1a1a1a] border border-[#242424] rounded p-3">
-                  <p className="text-[12px] text-[#c0c0c0] leading-relaxed">{analysis.resubmissionStrategy}</p>
+                <div className="bg-[#7ae1ed] border border-[#242424] rounded p-3">
+                  <p className="text-[12px] text-[#444] leading-relaxed">{analysis.resubmissionStrategy}</p>
                 </div>
               </div>
             </div>

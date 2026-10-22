@@ -25,7 +25,7 @@ export function Toast({ message, sub, type = 'success', onDismiss }: ToastProps)
   const accent = {
     success: 'border-green-500/30 bg-green-500/8',
     error: 'border-red-500/30 bg-red-500/8',
-    info: 'border-[#3a3a3a] bg-[#1a1a1a]',
+    info: 'border-blue-500/30 bg-white',
   }[type]
 
   const dot = {
@@ -46,7 +46,7 @@ export function Toast({ message, sub, type = 'success', onDismiss }: ToastProps)
     >
       <span className={`w-1.5 h-1.5 rounded-full mt-1 shrink-0 ${dot}`} />
       <div className="flex-1 min-w-0">
-        <p className="text-[12px] font-medium text-[#e0e0e0]">{message}</p>
+        <p className="text-[12px] font-medium text-[#444]">{message}</p>
         {sub && <p className="text-[11px] text-[#555] mt-0.5">{sub}</p>}
       </div>
       <button
