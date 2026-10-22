@@ -115,6 +115,10 @@ const handleResubmit = (claimId: string) => {
       </nav>
 
       <div className="flex-1 px-6 py-6 max-w-7xl mx-auto w-full space-y-6">
+        <div className="flex gap-6 items-start">
+        <StatusLegend />
+
+        <div className="flex-1 min-w-0 space-y-6">
         {/* Header */}
         <div className="flex items-end justify-between">
           <div>
@@ -164,6 +168,8 @@ const handleResubmit = (claimId: string) => {
             sub="Per reimbursement"
             accent="default"
           />
+        </div>
+        </div>
         </div>
 
         {/* Claims section */}
@@ -236,8 +242,6 @@ const handleResubmit = (claimId: string) => {
           Click any denied claim to open the AI Denial Analyzer and generate a recovery action plan.
         </div>
       </div>
-
-      <StatusLegend />
 
       {/* Denial analyzer panel */}
     {selectedClaim && isDenialClaim && (
